@@ -2,19 +2,16 @@
 #define __RF_H_
 
 #include <ELECHOUSE_CC1101_SRC_DRV.h>
-#include "driver/rmt.h"
+#include "../rmt_common.h"
 #include "driver/gpio.h"
 #include <SPI.h>
 
-class CC1101 {
+class CC1101 : public RMT_COMMON {
 private:
     char* data_read;
     static SPIClass _spi;
     SPIClass *__spi;
     float frequency=433.92;
-    rmt_config_t rxconfig;
-    rmt_config_t txconfig;
-    
 
 public:
     /////////////////////////////////////////////////////////////////////////////////////
@@ -32,7 +29,6 @@ public:
 
     inline float getFrequency() { return frequency; }
     bool setFrequency(float freq);
-
 
 
 };
